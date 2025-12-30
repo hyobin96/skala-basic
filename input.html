@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여러가지 입력 유형</title>
+</head>
+
+<body>
+    <form>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password">
+        <button type="button" id="togglePassword" style="background:none; border:none; cursor:pointer;">
+            <span id="eyeIcon" aria-label="비밀번호 표시" style="font-size:1.2em;">👁️</span>
+        </button>
+        <br><br>
+        <script>
+            document.getElementById('togglePassword').addEventListener('click', function () {
+                const pwd = document.getElementById('password');
+                const icon = document.getElementById('eyeIcon');
+                if (pwd.type === 'password') {
+                    pwd.type = 'text';
+                    icon.textContent = '🙈';
+                } else {
+                    pwd.type = 'password';
+                    icon.textContent = '👁️';
+                }
+            });
+        </script>
+
+        <label for="age">나이:</label>
+        <input type="number" id="age" name="age" min="0" max="120" step="5"><br><br>
+
+        <label for="birthday">생일:</label>
+        <input type="date" id="birthday" name="birthday"><br><br>
+
+        <label for="appointment">약속 시간:</label>
+        <input type="time" id="appointment" name="appointment"><br><br>
+
+        <label for="color">좋아하는 색상:</label>
+        <input type="color" id="color" name="color"><br><br>
+
+        <label for="checkbox">약관 동의</label>
+        <input type="checkbox" id="checkbox" name="checkbox" value="동의"><br><br>
+
+        <label for="radio1">남성</label>
+        <input type="radio" id="radio1" name="gender" value="남성">
+
+        <label for="radio2">여성</label>
+        <input type="radio" id="radio2" name="gender" value="여성"><br><br>
+
+        <select id="country" name="country">
+            <option value="kr">대한민국</option>
+            <option value="us">미국</option>
+            <option value="jp">일본</option>
+            <option value="cn">중국</option>
+        </select><br><br>
+
+        <button type="submit">제출</button>
+        <button type="reset">초기화</button>
+
+    </form>
+</body>
+
+</html>

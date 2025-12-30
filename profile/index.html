@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>장효빈 | 자기소개</title>
+
+    <style>
+        :root {
+            --bg: #0b1020;
+            --card: rgba(255, 255, 255, .06);
+            --stroke: rgba(255, 255, 255, .12);
+            --text: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .70);
+            --soft: rgba(255, 255, 255, .10);
+            --shadow: 0 18px 50px rgba(0, 0, 0, .45);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(900px 500px at 15% 10%, rgba(124, 92, 255, .35), transparent 55%),
+                radial-gradient(800px 450px at 85% 20%, rgba(0, 214, 255, .25), transparent 55%),
+                radial-gradient(900px 500px at 50% 85%, rgba(255, 72, 138, .20), transparent 60%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 40px 18px 56px;
+        }
+
+        header {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 22px;
+            border: 1px solid var(--stroke);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .05));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: -0.3px;
+        }
+
+        .title p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, .06);
+            color: var(--muted);
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 92, 255, 1), rgba(0, 214, 255, 1));
+            box-shadow: 0 0 0 4px rgba(124, 92, 255, .12);
+        }
+
+        main {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 18px;
+        }
+
+        @media (max-width: 860px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pill {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        section {
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, .06);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            padding: 18px 18px;
+        }
+
+        section h2 {
+            margin: 0 0 12px;
+            font-size: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 560px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .kv {
+            padding: 12px 12px;
+            border-radius: 14px;
+            border: 1px solid var(--soft);
+            background: rgba(0, 0, 0, .14);
+        }
+
+        .kv .k {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .kv .v {
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .profile {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 92px;
+            height: 92px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--stroke);
+            background: linear-gradient(135deg, rgba(124, 92, 255, .25), rgba(0, 214, 255, .15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(60px 60px at 30% 25%, rgba(255, 255, 255, .18), transparent 60%);
+            pointer-events: none;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .badge {
+            font-size: 12px;
+            color: var(--muted);
+            padding: 7px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--soft);
+            background: rgba(0, 0, 0, .12);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 14px;
+            border: 1px solid var(--soft);
+            background: rgba(0, 0, 0, .14);
+        }
+
+        thead th {
+            text-align: left;
+            font-size: 12px;
+            color: var(--muted);
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--soft);
+            background: rgba(255, 255, 255, .04);
+        }
+
+        tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            vertical-align: top;
+            font-size: 14px;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 12px;
+            border-radius: 14px;
+            border: 1px solid var(--soft);
+            background: rgba(0, 0, 0, .14);
+        }
+
+        .link-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .link-left .small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .link-right {
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid var(--soft);
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .04);
+        }
+
+        footer {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            padding: 14px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="title">
+                <h1>장효빈</h1>
+                <p>DevOps 지향. 웹 개발 관심.</p>
+            </div>
+
+            <div class="pill" aria-label="요약">
+                <span class="dot" aria-hidden="true"></span>
+                <span>96년생 · 만 29세 · 기계정보공학</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- 왼쪽: 소개/스택 -->
+            <div style="display:flex; flex-direction:column; gap:18px;">
+                <section>
+                    <h2>자기소개</h2>
+
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="profile.jpg" alt="프로필 사진" />
+                        </div>
+
+                        <div style="flex:1;">
+                            <div class="grid">
+                                <div class="kv">
+                                    <div class="k">이름</div>
+                                    <div class="v">장효빈</div>
+                                </div>
+                                <div class="kv">
+                                    <div class="k">나이</div>
+                                    <div class="v">96년생 · 만 29세</div>
+                                </div>
+                                <div class="kv">
+                                    <div class="k">전공</div>
+                                    <div class="v">기계정보공학</div>
+                                </div>
+                                <div class="kv">
+                                    <div class="k">취미</div>
+                                    <div class="v">누워서 유튜브 보기, 게임</div>
+                                </div>
+                            </div>
+
+                            <div class="badges" aria-label="키워드">
+                                <span class="badge">관심사: 웹 개발</span>
+                                <span class="badge">목표: DevOps 개발자</span>
+                                <span class="badge">게임: 롤 · 메이플랜드</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>기술 스택</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 28%;">분야</th>
+                                <th>기술</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Frontend</td>
+                                <td>Vue</td>
+                            </tr>
+                            <tr>
+                                <td>Backend</td>
+                                <td>Spring Boot, FastAPI</td>
+                            </tr>
+                            <tr>
+                                <td>Infra</td>
+                                <td>AWS, Docker, Jenkins</td>
+                            </tr>
+                            <tr>
+                                <td>Tools</td>
+                                <td>Git, Jira</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h2>경력</h2>
+
+                    <div class="grid">
+                        <div class="kv">
+                            <div class="k">공공기관 근무</div>
+                            </div>
+                        </div>
+
+                        <div class="kv">
+                            <div class="k">SSAFY 13기</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 오른쪽: 목록/링크 -->
+            <div style="display:flex; flex-direction:column; gap:18px;">
+                <section>
+                    <h2>정보 목록</h2>
+                    <ul>
+                        <li><strong>좋아하는 것</strong>: 게임(롤, 메이플랜드)</li>
+                        <li><strong>관심사</strong>: 웹 개발</li>
+                        <li><strong>목표</strong>: DevOps 개발자</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>링크</h2>
+                    <a class="link-card" href="https://blog.naver.com/hyobin_jang" target="_blank"
+                        rel="noopener noreferrer">
+                        <span class="link-left">
+                            <span style="font-weight:600; color: var(--text);">네이버 블로그</span>
+                            <span class="small">blog.naver.com/hyobin_jang</span>
+                        </span>
+                        <span class="link-right">방문</span>
+                    </a>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 장효빈</p>
+        </footer>
+    </div>
+</body>
+
+</html>

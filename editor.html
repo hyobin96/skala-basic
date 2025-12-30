@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple ContentEditable Editor</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; }
+    .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+    .toolbar button { padding: 6px 10px; cursor: pointer; }
+    .toolbar button.active { outline: 2px solid #333; }
+    .editor {
+      border: 1px solid #ccc; border-radius: 8px; padding: 12px;
+      min-height: 160px; line-height: 1.5;
+    }
+    .editor:focus { outline: 2px solid #222; }
+    .output-wrap { margin-top: 14px; }
+    textarea { width: 100%; min-height: 160px; border-radius: 8px; padding: 12px; }
+    .hint { color: #666; font-size: 12px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h3>Simple Editor</h3>
+
+  <div class="toolbar">
+    <button type="button" data-cmd="bold"><b>B</b></button>
+    <button type="button" data-cmd="italic"><i>I</i></button>
+    <button type="button" data-cmd="underline"><u>U</u></button>
+
+    <label>
+      색상:
+      <input id="colorPicker" type="color" value="#111111" />
+    </label>
+
+    <button id="saveBtn" type="button">저장(HTML 보기)</button>
+  </div>
+
+  <div id="editor" class="editor" contenteditable="true">
+    여기에 입력하세요.
+  </div>
+
+  <div class="output-wrap">
+    <h4>HTML 출력</h4>
+    <textarea id="output" readonly></textarea>
+    <div class="hint">
+      contenteditable은 브라우저마다 마크업이 약간 달라질 수 있습니다.
+      저장 전에 sanitize(허용 태그만 통과) 적용을 권장합니다.
+    </div>
+  </div>
+
+  <script>
+    const editor = document.getElementById("editor");
+    const output = document.getElementById("output");
+    const colorPicker = document.getElementById("colorPicker");
+    const saveBtn = document.getElementById("saveBtn");
+    const buttons = [...document.querySelectorAll(".toolbar button[data-cmd]")];
+
+    // 포커스 유지용: 버튼 클릭 시 selection이 날아가지 않게 함
+    function preserveSelectionExec(fn) {
+      editor.focus();
+      fn();
+      updateActiveStates();
+    }
+
+    // 선택 영역을 특정 태그로 감싸거나 해제하는 함수 (토글)
+    function toggleWrapSelectionWithTag(tag, style = null) {
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+      const range = sel.getRangeAt(0);
+      if (range.collapsed) return;
+      // 이미 해당 태그로 감싸져 있으면 해제(unwrap)
+      let commonAncestor = range.commonAncestorContainer;
+      let el = (commonAncestor.nodeType === 1 ? commonAncestor : commonAncestor.parentElement);
+      // 태그와 스타일 모두 일치하는지 확인
+      if (
+        el &&
+        el.tagName &&
+        el.tagName.toLowerCase() === tag.toLowerCase() &&
+        ((style && el.getAttribute('style') === style) || (!style && !el.getAttribute('style')))
+      ) {
+        // unwrap
+        const parent = el.parentNode;
+        while (el.firstChild) parent.insertBefore(el.firstChild, el);
+        parent.removeChild(el);
+        editor.focus();
+        sel.removeAllRanges();
+        // 선택 복원
+        const newRange = document.createRange();
+        newRange.selectNodeContents(parent);
+        sel.addRange(newRange);
+        updateActiveStates();
+        return;
+      }
+      // 아니면 wrap
+      const wrapEl = document.createElement(tag);
+      if (style) wrapEl.setAttribute('style', style);
+      wrapEl.appendChild(range.extractContents());
+      range.insertNode(wrapEl);
+      editor.focus();
+      sel.removeAllRanges();
+      const newRange = document.createRange();
+      newRange.selectNodeContents(wrapEl);
+      sel.addRange(newRange);
+      updateActiveStates();
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("mousedown", (e) => e.preventDefault()); // selection 유지
+      btn.addEventListener("click", () => {
+        const cmd = btn.dataset.cmd;
+        if (cmd === 'bold') {
+          toggleWrapSelectionWithTag('b');
+        } else if (cmd === 'italic') {
+          toggleWrapSelectionWithTag('i');
+        } else if (cmd === 'underline') {
+          toggleWrapSelectionWithTag('u');
+        }
+      });
+    });
+
+    colorPicker.addEventListener("input", () => {
+      toggleWrapSelectionWithTag('span', `color: ${colorPicker.value}`);
+    });
+
+    saveBtn.addEventListener("click", () => {
+      // editor 내부 HTML을 그대로 표시
+      output.value = editor.innerHTML.trim();
+    });
+
+    // 현재 커서 위치의 서식 상태 반영(선택사항)
+    function updateActiveStates() {
+      // execCommand 제거, 직접 태그 탐색
+      const sel = window.getSelection();
+      let node = sel.anchorNode;
+      if (!node) return;
+      if (node.nodeType === 3) node = node.parentElement;
+      const stateMap = {
+        bold: false,
+        italic: false,
+        underline: false,
+      };
+      while (node && node !== editor) {
+        if (node.tagName === 'B') stateMap.bold = true;
+        if (node.tagName === 'I') stateMap.italic = true;
+        if (node.tagName === 'U') stateMap.underline = true;
+        node = node.parentElement;
+      }
+      buttons.forEach(btn => {
+        btn.classList.toggle("active", !!stateMap[btn.dataset.cmd]);
+      });
+    }
+
+    editor.addEventListener("keyup", updateActiveStates);
+    editor.addEventListener("mouseup", updateActiveStates);
+    editor.addEventListener("focus", updateActiveStates);
+  </script>
+</body>
+</html>

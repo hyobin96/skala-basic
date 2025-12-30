@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주간 시간표</title>
+</head>
+<body>
+    <h1>나의 주간 시간표</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>시간</th>
+            <th style="background:#FFEBEE">월요일</th>
+            <th style="background:#E3F2FD">화요일</th>
+            <th style="background:#E8F5E9">수요일</th>
+            <th style="background:#FFF3E0">목요일</th>
+            <th style="background:#F3E5F5">금요일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>09:00 - 11:00</td>
+            <td rowspan="2" style="background:#FFEBEE">수학</td>
+            <td style="background:#E3F2FD">과학</td>
+            <td rowspan="2" style="background:#E8F5E9">영어</td>
+            <td style="background:#FFF3E0">역사</td>
+            <td style="background:#F3E5F5">체육</td>
+        </tr>
+        <tr>
+            <td>10:00 - 11:00</td>
+            <!-- 월요일, 수요일은 rowspan으로 위에서 합침 -->
+            <td style="background:#E3F2FD">미술</td>
+            <!-- 수요일은 rowspan으로 위에서 합침 -->
+            <td style="background:#FFF3E0">수학</td>
+            <td style="background:#F3E5F5">과학</td>
+        </tr>
+        <tr>
+            <td>11:00 - 12:00</td>
+            <td style="background:#FFEBEE">영어</td>
+            <td style="background:#E3F2FD">역사</td>
+            <td style="background:#E8F5E9">체육</td>
+            <td style="background:#FFF3E0">국어</td>
+            <td style="background:#F3E5F5">미술</td>
+        </tr>
+        <tr>
+            <td>12:00 - 13:00</td>
+            <td colspan="5" style="background:#BDBDBD">🍚 점심시간</td>
+        </tr>
+        <tr>
+            <td>13:00 - 14:00</td>
+            <td style="background:#FFEBEE">수학</td>
+            <td style="background:#E3F2FD">과학</td>
+            <td style="background:#E8F5E9">영어</td>
+            <td style="background:#FFF3E0">역사</td>
+            <td style="background:#F3E5F5">체육</td>
+        </tr>
+    </tbody>
+    </table>
+</body>
+</html>
