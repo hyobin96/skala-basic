@@ -1,0 +1,79 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.*
+
+# Mac system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Compiled source #
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# SASS cache
+.sass-cache/
+
+# IDE files
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# HTML/CSS/JS minified files
+*.min.js
+*.min.css
+
+# Parcel cache
+.cache/
+
+# Misc
+*.tgz
+
+# npm debug log
+npm-debug.log*
+
+# Yarn Integrity file
+yarn.lock
+
+# Bower dependency directory
+bower_components/
+
+# Test output
+/coverage
+
+# Temporary files
+*.tmp
+*.swp
+
+# System Files
+Thumbs.db
+
+# Custom: ignore local preview server output
+serve/
