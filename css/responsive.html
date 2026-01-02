@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grid Responsive Layout</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      font-family: system-ui, sans-serif;
+    }
+
+    header,
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+      font-weight: 600;
+    }
+
+    /* 메인 영역 기본(모바일) */
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    article {
+      background: #f4f4f4;
+      padding: 16px;
+      min-height: 120px;
+    }
+
+    aside {
+      background: #e0e0e0;
+      padding: 16px;
+      min-height: 80px;
+    }
+
+    /* 768px 이상: 사이드바가 먼저 */
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns: 240px 1fr;
+        grid-template-areas: "sidebar content";
+      }
+
+      aside {
+        grid-area: sidebar;
+      }
+
+      article {
+        grid-area: content;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>헤더</header>
+
+  <main>
+    <article>메인 콘텐츠</article>
+    <aside>사이드바</aside>
+  </main>
+
+  <footer>푸터</footer>
+</body>
+</html>

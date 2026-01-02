@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hover 실습</title>
+    <style>
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition:
+                background-color 0.3s,
+                transform 0.3s,
+                box-shadow 0.3s,
+                letter-spacing 0.3s;
+        }
+
+        /* 1. 색상 변경 */
+        button:hover {
+            background-color: green;
+        }
+
+        /* 2. 살짝 커짐 */
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        /* 3. 그림자 추가 */
+        button:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 4. 글자 간격 변화 */
+        button:hover {
+            letter-spacing: 2px;
+        }
+
+        /* 5. 눌리는 느낌 */
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <button>마우스를 올려보세요</button>
+</body>
+
+</html>

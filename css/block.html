@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>div 블록 vs 인라인 비교</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+
+    .wrap { border: 2px solid #ddd; padding: 12px; margin-bottom: 20px; }
+    .title { font-weight: 700; margin-bottom: 10px; }
+
+    /* 기본 div: block */
+    .block-div {
+      background: #cfe8ff;
+      border: 2px solid #3a7bd5;
+      padding: 10px;
+      margin: 8px 0;
+      width: 220px; /* block이라도 width 설정 가능 */
+    }
+
+    /* div를 inline처럼: display:inline */
+    .inline-div {
+      display: inline;
+      background: #d9ffd9;
+      border: 2px solid #2aa52a;
+      padding: 10px;
+      margin: 8px 0; /* inline에서는 좌우만 자연스럽게 적용됨 */
+      width: 220px;  /* inline에서는 width/height 거의 적용 안 됨 */
+      height: 60px;
+    }
+
+    /* div를 inline-block처럼: inline + width/height 적용 */
+    .inline-block-div {
+      display: inline-block;
+      background: #fff2c7;
+      border: 2px solid #d39b00;
+      padding: 10px;
+      margin: 6px;
+      width: 220px;   /* 적용됨 */
+      height: 60px;   /* 적용됨 */
+      vertical-align: top;
+    }
+
+    .hint { color: #555; font-size: 14px; margin-top: 8px; }
+    .line { border-top: 1px dashed #bbb; margin: 12px 0; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="title">1) 기본 div (display: block)</div>
+    <div class="block-div">block div 1</div>
+    <div class="block-div">block div 2</div>
+    <div class="hint">block은 한 줄을 차지해서 다음 요소가 아래로 내려감.</div>
+  </div>
+
+  <div class="wrap">
+    <div class="title">2) div를 인라인처럼 (display: inline)</div>
+    <span>앞 텍스트</span>
+    <div class="inline-div">inline div A</div>
+    <div class="inline-div">inline div B</div>
+    <span>뒤 텍스트</span>
+    <div class="hint">
+      inline은 줄바꿈 없이 옆으로 붙음. width/height는 거의 무시됨.
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="title">3) div를 인라인-블록처럼 (display: inline-block)</div>
+    <div class="line"></div>
+    <div class="inline-block-div">inline-block 1</div>
+    <div class="inline-block-div">inline-block 2</div>
+    <div class="inline-block-div">inline-block 3</div>
+    <div class="hint">
+      inline-block은 옆으로 붙으면서도 width/height가 적용됨.
+    </div>
+  </div>
+
+</body>
+</html>

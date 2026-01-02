@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>테마 전환 예제</title>
+
+  <style>
+    /* =========================
+       기본 변수 (화이트 테마)
+       ========================= */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --title-color: #007acc;
+    }
+
+    /* =========================
+       다크 테마 변수
+       ========================= */
+    body.dark {
+      --bg-color: #1e1e1e;
+      --text-color: #e0e0e0;
+      --title-color: #4fc3f7;
+    }
+
+    /* =========================
+       공통 스타일
+       ========================= */
+    body {
+      margin: 0;
+      padding: 40px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .theme-selector {
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      color: var(--title-color);
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 테마 선택 -->
+  <div class="theme-selector">
+    <label>
+      <input type="radio" name="theme" checked onclick="setLight()" />
+      화이트 테마
+    </label>
+    &nbsp;&nbsp;
+    <label>
+      <input type="radio" name="theme" onclick="setDark()" />
+      다크 테마
+    </label>
+  </div>
+
+  <!-- 콘텐츠 -->
+  <h1>테마 전환 예제</h1>
+  <p>CSS 사용자 정의 변수를 활용하여 테마를 전환할 수 있습니다.</p>
+
+  <script>
+    function setLight() {
+      document.body.classList.remove("dark");
+    }
+
+    function setDark() {
+      document.body.classList.add("dark");
+    }
+  </script>
+</body>
+</html>

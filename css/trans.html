@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transition + Transform</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* 상단 라운드 박스 */
+    .top-box {
+      width: 320px;
+      height: 140px;
+      background: #2ecc71; /* 녹색 */
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      user-select: none;
+
+      /* transition + transform */
+      transition: background-color 0.35s ease, transform 0.35s ease;
+      /* transform: none; */
+    }
+
+    /* hover 시 배경 변경 */
+    .top-box:hover {
+      background: #f1c40f; /* 노란색 */
+    }
+
+    /* 버튼 누르면 45도 기울이기 */
+    .top-box.is-rotated {
+      transform: rotate(45deg);
+    }
+
+    button {
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+  <div id="topBox" class="top-box">hover me</div>
+
+  <button id="tiltBtn" type="button">기울이기(45°)</button>
+
+  <script>
+    const topBox = document.getElementById("topBox");
+    const tiltBtn = document.getElementById("tiltBtn");
+
+    tiltBtn.addEventListener("click", () => {
+      topBox.classList.toggle("is-rotated");
+    });
+  </script>
+</body>
+</html>

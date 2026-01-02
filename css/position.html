@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Position Example</title>
+  <style>
+    body {
+      margin: 0;
+      height: 2000px;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      width: 120px;
+      height: 80px;
+      padding: 8px;
+      color: white;
+      font-size: 14px;
+    }
+
+    /* static */
+    .static {
+      position: static;
+      background: gray;
+    }
+
+    /* relative */
+    .relative {
+      position: relative;
+      top: 20px;
+      left: 20px;
+      background: blue;
+    }
+
+    /* absolute 기준 컨테이너 */
+    .container {
+      position: relative;
+      margin-top: 40px;
+      height: 200px;
+      border: 2px dashed black;
+    }
+
+    .absolute {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: red;
+    }
+
+    /* fixed */
+    .fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: green;
+    }
+
+    /* sticky */
+    .sticky {
+      position: sticky;
+      top: 0;
+      background: purple;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box static">
+    static<br>
+    기본 흐름
+  </div>
+
+  <div class="box relative">
+    relative<br>
+    자기 기준 이동
+  </div>
+
+  <div class="container">
+    container (relative)
+    <div class="box absolute">
+      absolute<br>
+      부모 기준
+    </div>
+  </div>
+
+  <div class="box sticky">
+    sticky<br>
+    스크롤 시 고정
+  </div>
+
+  <div class="box fixed">
+    fixed<br>
+    화면 기준
+  </div>
+
+</body>
+</html>
