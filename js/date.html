@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * 날짜를 "YYYY-MM-DD HH:mm:ss" 형식으로 반환 (로컬 시간)
+        * @param {Date | string | number} 기본값 [date=new Date()]
+        * @returns {string}
+        */
+        function formatDateTime(d = new Date()) {
+            const pad = n => String(n).padStart(2, "0");
+
+            const yyyy = d.getFullYear();
+            const mm = pad(d.getMonth() + 1);
+            const dd = pad(d.getDate());
+
+            const hh = pad(d.getHours());
+            const mi = pad(d.getMinutes());
+            const ss = pad(d.getSeconds());
+
+            return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`;
+        }
+
+        console.log(formatDateTime()); // 현재 날짜와 시간
+
+        const now = new Date();
+        console.log(now.toLocaleDateString()); // 현재 시스템 시간 기준으로 표시
+        console.log(now.toISOString()); // UTC 기준으로 표시
+        console.log(now.getTime()); // 1970-01-01 00:00:00 UTC 이후 경과한 밀리초
+        const dayAfter30 = now.getTime() + 30 * 24 * 60 * 60 * 1000; // 30일 후 밀리초
+        console.log(formatDateTime(new Date(dayAfter30))); // 30일 후 날짜와 시간
+    </script>
+</body>
+
+</html>

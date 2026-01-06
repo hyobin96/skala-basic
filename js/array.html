@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 배열</title>
+</head>
+<body>
+    <script>
+        const originals = ["사과", "바나나", "오렌지"]
+        
+        const copiedArray = [...originals]
+        console.log("원본 배열:", originals)
+        console.table("복사된 배열:", copiedArray.join("-"))
+
+        copiedArray[0] = "포도"
+        console.log("원본 배열은 여전히 동일:", originals)
+        console.log("복사된 배열 수정 후:", copiedArray)
+
+        const arr = []
+        arr[0] = "첫번째"
+        arr[2] = "세번째"
+
+        console.log("배열:", arr, "길이:", arr.length)
+
+        for(let i = 0; i < arr.length; i++) {
+            console.log(`인덱스 ${i}:`, arr[i])
+        }
+        for (let element of arr) {
+            console.log("for...of 반복문 요소:", element)
+        }
+        for (let index in arr) {
+            console.log("for...in 반복문 인덱스:", index, "요소:", arr[index])
+        }   
+    </script>
+</body>
+</html>

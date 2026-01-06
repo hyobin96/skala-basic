@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 참조형 변수</title>
+</head>
+<body>
+    <script>
+        // let person = {
+        //     name: "홍길동",
+        //     age: 30,
+        // };
+        // const person = {
+        //     name: "홍길동",
+        //     age: 30,
+        // };
+
+        // person.company = '활빈당';
+        // console.log(person);
+        // person['company'] = '스칼라';
+        // person["name"] = "김철수";
+        // console.log(person);
+
+        // const의 경우 객체 재할당 불가
+        // person = {
+        //     name: "이영희",
+        //     age: 25,
+        // }
+
+        // console.log(person);
+
+        const person = ["홍길동", "김철수", "박영희"];
+    
+        console.log(person);
+        person.push("이순신");
+        console.log(person);
+    </script>
+</body>
+</html>

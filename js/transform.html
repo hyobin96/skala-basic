@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>홍길동의 변신</title>
+</head>
+<body>
+  <script>
+    function transform(target) {
+      if (target && target.trim() !== "") {
+        document.write(`<h1>홍길동 변신 – ${target}!</h1>`);
+      } else {
+        document.write("<h1>연기처럼 사라졌습니다.</h1>");
+      }
+    }
+    
+    // 사용자 입력 받기
+    const target = prompt("변신할 모습을 입력하세요");
+    // 함수 실행
+    transform(target);
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍길동 식량 배분 실습</title>
+    <style>
+    table {
+      border-collapse: collapse;
+      width: 400px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+    <script>
+        const foods = [
+            "쌀", "보리", "콩", "감자", "양파",
+            "마늘", "배추", "무", "고구마", "호박"
+        ];
+
+        const poors = ["철수", "영희", "민수"];
+
+        const results = [
+            { name: "철수", items: [] },
+            { name: "영희", items: [] },
+            { name: "민수", items: [] }
+        ];
+
+        // 식량을 순서대로 하나씩 분배하기
+        foods.forEach((food, index) => {
+            const person = results[index % results.length];
+            person.items.push(food);
+        });
+
+        console.table(results);
+
+        // html 문서 만들기
+        let html = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>식량</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `
+
+        // 테이블 행 추가
+        for (const { name, items } of results) {
+            html += `
+            <tr>
+                <td>${name}</td>
+                <td>${items.join(", ")}</td>
+            </tr>
+        `;
+        }
+
+        // 테이블 닫기
+        html += `
+        </tbody>
+            </table>
+        `;
+
+        // body에 쓰기
+        document.write(html);
+    </script>
+</body>
+
+</html>
