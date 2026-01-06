@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블록 요소 vs 인라인 스타일 비교</title>
+    <style>
+        .block {
+            background-color: skyblue;
+            border: 1px solid blue;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .inline {
+            display: inline;
+            background-color: lightgreen;
+            border: 1px solid green;
+            margin: 2px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h3>블록 요소 기본 스타일</h3>
+    <div style="border: dotted; width: 100%;">
+        <div style="margin: 10px;">
+            <div class="block"> 블록 스타일 div 1 </div>
+            <div class="block"> 블록 스타일 div 2 </div>
+        </div>
+    </div>
+    <h3> 인라인 스타일로 변경한 div </h3>
+    <div style="border: dotted; width: 100%;">
+        <div style="margin: 5px; padding: 5px;">
+            <div class="inline"> 인라인 스타일 div 1 </div>
+            <div class="inline"> 인라인 스타일 div 2 </div>
+
+        </div>
+    </div>
+</body>
+</html>
