@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Progress Bar -->
+    <div class="m-3 progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        <div id="progress-bar" class="progress-bar" style="width: 0%">0%</div>
+    </div>
+
+    <!-- Button -->
+    <button id="start-btn" type="button" class="btn btn-primary m-3">
+        Start
+    </button>
+
+    <script>
+        const progressBar = document.getElementById("progress-bar");
+        const startBtn = document.getElementById("start-btn");
+
+        let progress = 0;
+        let intervalId = null;
+
+        // 3~5초 랜덤 종료 시간
+        const getEndTime = () => {
+            return 3000 + Math.random() * 2000;
+        };
+
+        // progress bar 업데이트
+        const updateProgressBar = (value) => {
+            progressBar.style.width = value + "%";
+            progressBar.textContent = value + "%";
+            progressBar.setAttribute("aria-valuenow", value);
+        };
+
+        startBtn.addEventListener("click", () => {
+            if (intervalId) return; // 중복 실행 방지
+
+            startBtn.disabled = true; // 버튼 비활성화
+            progress = 0;
+            updateProgressBar(0);
+
+            const endTime = getEndTime();
+            const startTime = Date.now();
+
+            intervalId = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+
+                // 랜덤 종료 시간 도달 시
+                if (elapsed >= endTime) {
+                    updateProgressBar(100);
+                    clearInterval(intervalId);
+                    intervalId = null;
+                    startBtn.disabled = false;
+                    return;
+                }
+
+                // 1초마다 10% 증가
+                progress += 10;
+                if (progress > 100) progress = 100;
+                updateProgressBar(progress);
+
+            }, 1000);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

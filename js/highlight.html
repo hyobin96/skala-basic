@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일 추가 제거</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+            color: red;
+            font-weight: bold;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="p">이 문장을 강조해보세요!</p>
+    <button id="highlight-btn">강조 토글</button>
+    <script>
+        const p = document.getElementById("p")
+        const highlightBtn = document.getElementById("highlight-btn")
+        highlightBtn.addEventListener("click", () => {
+            p.classList.toggle("highlight")
+        })
+    </script>
+</body>
+
+</html>

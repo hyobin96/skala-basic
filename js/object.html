@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name: "홍길동",
+            age: 30,
+            skills: ['검술', '둔갑술', '말타기'],
+            greet: function() {
+                console.log('안녕하세요, 저는 ' + this.name + "입니다")
+            }
+        }
+        // console.log(person)
+        // console.log(person.name)
+        // console.log(person.skills)
+
+        // 깊은 복제 방법: 직렬화 후 역직렬화
+        const msg = JSON.stringify(person)
+        console.log(msg, person)
+
+        const obj = JSON.parse(msg)
+        obj.name = '성춘향'
+        obj.skills.push('가야금')
+        console.log(obj, person)
+
+        // const student = Object.assign({}, person)
+        const student = Object.create(person)
+        // const student = {...person}
+        student.name = "이몽룡"
+        student.skills.push("서예")
+        console.log(student)
+        delete student.name
+
+        const skala = {} // new Object()
+        skala.className = "클라우드"
+        skala["address"] = "성남시 분당구 정자동"
+        // console.log(skala)
+
+        const key = "className"
+        // console.log(skala.className, skala["address"])
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerHTML과 textContent 비교</title>
+</head>
+<body>
+    <h2>innerHTML 예제</h2>
+    <div id="html-div">
+
+    </div>
+    <h2>textContent 예제</h2>
+    <div id="text-div">
+
+    </div>
+    <script>
+        const html_div = document.getElementById("html-div")
+        const text_div = document.getElementById("text-div")
+        
+        const str = "<strong>안녕하세요</strong>, <em>홍길동</em>입니다."
+        
+        html_div.innerHTML = str
+        text_div.textContent = str
+    </script>
+</body>
+</html>

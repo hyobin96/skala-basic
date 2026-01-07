@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoist 예시</title>
+</head>
+<body>
+    <script>
+        // console.log(x)
+        // console.log(`x: ${x}`)
+
+        // var x = 10  // 선언되는 것만 위로 올려서 먼저 실행
+        // console.log(x)
+
+        // ------------------------------------------------
+
+        // console.log(`x: ${x}`)
+
+        // let x = 10  // let은 호이스팅되는 경우 선언은 되지만 초기화가 되지 않아서 접근 시 에러 발생
+
+        // ------------------------------------------------
+        // 변수에 함수를 할당하면 변수 선언만 호이스팅 되어서 선언 전 함수 호출 시 에러 발생
+
+        let x = add(5, 10)
+        console.log(`x: ${x}`)
+
+        function add(a, b) {  // 함수 선언문은 호이스팅 됨
+            return a + b
+        }
+
+        let x2 = add2(5, 10)  // 함수 표현식은 호이스팅 되지 않아서 에러 발생
+        console.log(`x2: ${x2}`) 
+
+        const add2 = function(a, b) {  // 함수 표현식은 호이스팅 되지 않음
+            return a + b
+        }
+
+        let x3 = add3(5, 10)  // 화살표 함수 또한 호이스팅 되지 않어서 에러 발생
+
+        const add3 = (a, b) => a + b  // 화살표 함수도 함수 표현식과 동일하게 호이스팅 되지 않음
+
+    </script>
+</body>
+</html>

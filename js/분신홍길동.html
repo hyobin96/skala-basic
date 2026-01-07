@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>분신홍길동</title>
+</head>
+
+<body>
+    <script>
+        function deepCopy(obj) {
+            return JSON.parse(JSON.stringify(obj))
+        }
+
+        const realHong = {
+            name: "홍길동",
+            age: 25,
+            job: "의적",
+            skills: ["검술", "전략", "분신"],
+            shadow: {
+                color: "검은색"
+            },
+        }
+        
+        const fakeHong = deepCopy(realHong)
+
+        fakeHong.skills.pop()
+        delete fakeHong.shadow
+
+        console.log(fakeHong)
+
+    </script>
+    
+</body>
+
+</html>
